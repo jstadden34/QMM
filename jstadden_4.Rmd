@@ -1,0 +1,77 @@
+---
+title: "Assignment 4"
+author: "Jared Stadden"
+date: "10/3/2020"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Installing and loading packages:
+```{r}
+#install.packages("lpSolveAPI")
+library(lpSolveAPI)
+```
+
+Reading lp file:
+
+```{r}
+lprec <- read.lp("jstadden_4.lp")
+lprec
+```
+
+Solving lp:
+```{r}
+solve(lprec)
+```
+Value of 0 means solution was found
+
+Objective value:
+```{r}
+get.objective(lprec)
+```
+The max value found for the objective function was 696,000
+
+Decision variable values:
+```{r}
+get.variables(lprec)
+```
+Small units produced at plant 1:
+x1 = 0;  
+Small units produced at plant 2:
+x2 = 166.67;  
+Small units produced at plant 3:
+x3 = 416.67;  
+Medium units produced at plant 1:
+y1 = 177.78;  
+Medium units produced at plant 2:
+y2 = 666.67;  
+Medium units produced at plant 3:
+y3 = 0;  
+Large units produced at plant 1:
+z1 = 516.67;  
+Large units produced at plant 2:
+z2 = 0;  
+Large units produced at plant 3:
+z3 = 0;  
+
+
+Constraint RHS values:
+```{r}
+get.constraints(lprec)
+```
+694.44 <= 750;  
+833.33 <= 900;  
+416.67 <= 450;  
+13,000 <= 13,000;  
+12,000 <= 12,000;  
+5,000 <= 5,000;  
+583.33 <= 750;  
+844.44 <= 1,200;  
+516.67 <= 900;  
+(Last two zeros are for the equaivalent percentage contraints)
