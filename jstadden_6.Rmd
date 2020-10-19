@@ -1,0 +1,67 @@
+---
+title: "jstadden_6"
+author: "Jared Stadden"
+date: "10/18/2020"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Installing and loading packages:
+```{r}
+#install.packages("lpSolveAPI")
+library(lpSolveAPI)
+```
+
+Reading lp file:
+
+```{r}
+lprec <- read.lp("jstadden_6.lp")
+lprec
+```
+Because the supply does not equal the demand as required by the transportation problem, dummy variables were introduced (an imaginary Warehouse 4) so that we can achieve a feasible solution.
+
+Solving lp:
+```{r}
+solve(lprec)
+```
+Value of 0 means solution was found
+
+Objective value:
+```{r}
+get.objective(lprec)
+```
+The minimum combined cost of production and shipping is $132,790  
+
+Decision variable values:
+```{r}
+get.variables(lprec)
+```
+x11 = 0  
+x12 = 60  
+x13 = 40  
+x21 = 80  
+x22 = 0  
+x23 = 30  
+*the dummy variables don't actually get produced:  
+x14 = 0  
+x24 = 10  
+  
+To minimize combined costs:    
+Plant A should produce x11 + x12 + x13 = 100 AEDs  
+Plant B should produce x21 + x22 + x23 = 110 AEDs  
+Warehouse 1 should receive x11 + x21 = 80 AEDs  
+Warehouse 2 should receive x12 + x22 = 60 AEDs  
+Warehouse 3 should receive x13 + x23 = 70 AEDs  
+  
+  
+  
+Constraint RHS values:
+```{r}
+get.constraints(lprec)
+```
+
