@@ -1,0 +1,93 @@
+---
+title: "jstadden_8"
+author: "Jared Stadden"
+date: "11/1/2020"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+#install.packages("Benchmarking")
+library(Benchmarking)
+```
+
+
+
+```{r}
+x <- matrix(c(150,400,320,520,350,320,0.2,0.7,1.2,2.0,1.2,0.7),ncol=2)
+y <- matrix(c(14000,14000,42000,28000,19000,14000,3500,21000,10500,42000,25000,15000),ncol=2)
+colnames(x) <- c("hours","supplies")
+colnames(y) <- c("reimbursed","private pay")
+```
+
+FDH:
+```{r}
+e1 <- dea(x,y,RTS="fdh")
+e1
+peers(e1)
+lambda(e1)
+#dea.plot.isoquant(x,y,RTS="fdh")
+```
+
+CRS:
+```{r}
+e2 <- dea(x,y,RTS="crs")
+e2
+peers(e2)
+lambda(e2)
+#dea.plot.isoquant(x,y,RTS="crs")
+```
+
+VRS:
+```{r}
+e3 <- dea(x,y,RTS="vrs")
+e3
+peers(e3)
+lambda(e3)
+#dea.plot.isoquant(x,y,RTS="vrs")
+```
+
+IRS:
+```{r}
+e4 <- dea(x,y,RTS="irs")
+e4
+peers(e4)
+lambda(e4)
+#dea.plot.isoquant(x,y,RTS="irs")
+```
+
+DRS:
+```{r}
+e5 <- dea(x,y,RTS="drs")
+e5
+peers(e5)
+lambda(e5)
+#dea.plot.isoquant(x,y,RTS="drs")
+```
+
+FRH:
+```{r}
+e6 <- dea(x,y,RTS="add")
+e6
+peers(e6)
+lambda(e6)
+```
+
+*I created my table in Excel and included it as an image. It can be seen in my knitted PDF, and I have also included the image in my github.  
+  
+
+![table summarizing the outputs](C:\\Users\\jared\\Desktop\\HW8_Table.PNG)  
+
+
+The FDH and FRH methods produced the same results where all 6 facilities were considered efficient with DEA values of 1.0. Thus, none of them had peers other than themselves and the lambda values were simply weights of 1 on themselves.  
+  
+The CRS and DRS methods also produced the same results as each other. They found Facilities 1, 2, 3, and 4 to be efficient. However, they found Facility 5 to be 98% efficient and Facility 6 to be 87% efficient. Facility 5 had peers in facilities 1, 2, and 4 with relative weights 0.20, 0.80, and 0.54, respectively. Likewise, Facility 6 had peers in facilities 1, 2, and 4, as well, but with relative weights 0.34, 0.39, and 0.13, respectively.  
+  
+Similarly, the VRS and IRS methods had the same outputs as one another. They found Facilities 1, 2, 3, 4 and 5 to be efficient, but Facility 6 to only be 90% efficient. Facility 6 had peers in facilities 1, 2, and 5 with respective relative weights of 0.40, 0.34, and 0.26.  
+
