@@ -1,0 +1,42 @@
+---
+title: "jstadden_9"
+author: "Jared Stadden"
+date: "11/8/2020"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Question 1:  
+Y1P – Y1M = 6X1 + 4X2 + 5X3 - 50  
+Y2P – Y2M = 8X1 + 7X2 + 5X3 - 75  
+P = 20X1 + 15X2 + 25X3  
+
+Question 2:  
+Max: Z = P – 6C – 3D = 20X1 + 15X2 + 25X3 – 6Y1P – 6Y1M – 3Y2M  
+
+Question 3:
+```{r}
+library(lpSolveAPI)
+gp <- read.lp("jstadden_9.lp")
+gp
+```
+
+```{r}
+solve(gp)
+get.objective(gp)
+get.variables(gp)
+```
+
+Findings:  
+X1 = 0, X2 = 0, X3 = 15  
+Y1P = 25, Y1M = 0  
+Y2P = 0, Y2M = 0  
+    
+This suggests Product 3 should have a production rate of 15.  
+Also, we are over the employment goal by 25 (2500 emplyees).  
+The penalty from exceeding the goal is 225.
