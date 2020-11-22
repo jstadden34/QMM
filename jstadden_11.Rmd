@@ -1,0 +1,45 @@
+---
+title: "jstadden_11"
+author: "Jared Stadden"
+date: "11/22/2020"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(lpSolveAPI)
+x<-read.lp("jstadden_11.lp")
+x
+```
+
+```{r}
+solve(x)
+get.objective(x)
+get.variables(x)
+```
+The total cost is $25,675  
+  
+The following is the number of people assigned to each shift:  
+Shift 1: 2  
+Shift 2: 4  
+Shift 3: 5  
+Shift 4: 0  
+Shift 5: 8  
+Shift 6: 1  
+Shift 7: 13  
+  
+That means this many people would be scheduled to work each day:  
+Sunday: 18  
+Monday: 27  
+Tuesday: 24  
+Wednesday: 28  
+Thursday: 25  
+Friday: 24  
+Saturday: 19  
+
+
