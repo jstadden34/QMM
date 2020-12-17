@@ -1,0 +1,45 @@
+---
+title: "jstadden_Final"
+author: "Jared Stadden"
+date: "12/16/2020"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Loading package:
+```{r}
+library(lpSolveAPI)
+```
+
+Read .lp file:
+```{r}
+lprec <- read.lp("jstadden_Final.lp")
+lprec
+```
+
+Solve lp problem:
+```{r}
+solve(lprec)
+```
+
+Value of 0 means solution was found
+
+Objective value:
+```{r}
+get.objective(lprec)
+```
+
+Decision variable values:
+```{r}
+get.variables(lprec)
+```
+
+Group 1: Students 4,5, and 8  
+Group 2: Students 7,9, and 12  
+Group 3: Students 1,2, and 6  
+Group 4: Students 3,10, and 11  
